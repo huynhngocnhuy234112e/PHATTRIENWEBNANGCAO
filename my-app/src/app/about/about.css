@@ -1,0 +1,13 @@
+.table,td{
+    border: 1px;
+    border-style: solid;
+}
+td{
+    color:aqua
+}
+
+.myavatar{
+    width: 150px;
+    height: 150px;
+    content: url("../../assets/images/myavatar.jpg");
+}

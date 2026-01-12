@@ -1,0 +1,25 @@
+<p>GPA calculator</p>
+<table>
+  <tr>
+    <td>Điểm quá trình (30%):</td>
+    <td><input type="text" id="gpa-input-a" #input_a /></td>
+  </tr>
+  <tr>
+    <td>Giữa kì (20%):</td>
+    <td><input type="text" id="gpa-input-b" #input_b /></td>
+  </tr>
+  <tr>
+    <td>Cuối kì (50%):</td>
+    <td><input type="text" id="gpa-input-c" #input_c /></td>
+  </tr>
+  <tr>
+    <td>Result:</td>
+    <td id="gpa-result">{{ resultText }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button (click)="get_result(input_a.value, input_b.value, input_c.value)">Get Result</button>
+      <button (click)="clear_data(input_a, input_b, input_c)">Clear</button>
+    </td>
+  </tr>
+</table>

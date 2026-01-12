@@ -1,0 +1,54 @@
+<p>contact works!</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Nguyễn Thị Cẩm</td>
+      <td>{{contact_name}}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>camcam@uel.edu.vn</td>
+      <td>{{contact_email}}</td>
+    </tr>
+    <tr>
+      <td>Phone Number</td>
+      <td>0901234567</td>
+      <td>{{contact_phone}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="Send" (click)="sendContact('Thị CẩmCẩm')">
+      </td>
+    </tr>
+  </tbody>
+  
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>First Name</td>
+      <td><input type="text" [(ngModel)]="firstName"></td>
+    </tr>
+    <tr>
+      <td>Middle Name</td>
+      <td><input type="text" [(ngModel)]="middleName"></td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td><input type="text" [(ngModel)]="lastName"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button (click)="combineFullName()">Gộp họ tên</button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        Full Name: {{ contact_name }}
+      </td>
+    </tr>
+  </tbody>
+</table>
