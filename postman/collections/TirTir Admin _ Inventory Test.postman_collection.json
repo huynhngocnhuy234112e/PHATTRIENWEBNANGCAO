@@ -1,0 +1,403 @@
+{
+  "info": {
+    "_postman_id": "ab5e1985-7aa8-45fe-97de-261380474304",
+    "name": "TirTir Admin & Inventory Test",
+    "description": "Collection to test Admin Dashboard, Product Management, and Inventory features.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Login Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set(\"token\", jsonData.token);",
+                  "    console.log(\"Token set successfully\");",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "id": "b05460cb-16fe-4c55-9410-acd91b8997f6"
+              }
+            }
+          ],
+          "id": "a86cba90-a281-4130-aaa6-f6246a944a31",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@tirtir.com\",\n    \"password\": \"admin123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d6409d0b-6ac5-48fc-ae43-b6cf97941f3e"
+    },
+    {
+      "name": "2. Product Management",
+      "item": [
+        {
+          "name": "Create Product",
+          "id": "508fce7c-7bcf-4c67-b458-e138646a6538",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"Product_ID\": \"TEST-999\",\n    \"Name\": \"Test Admin Product\",\n    \"Price\": 500000,\n    \"Category\": \"Makeup\",\n    \"Stock_Quantity\": 100,\n    \"Thumbnail_Images\": \"https://example.com/image.jpg\",\n    \"Description_Short\": \"Test product created via Admin API\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "id": "f25d5b1a-135e-45e0-9e57-f1330b90ca32",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"Price\": 450000,\n    \"Stock_Quantity\": 150\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/products/TEST-999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "TEST-999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Quick Stock Update",
+          "id": "949cbc68-c1ae-4d66-a9d0-0b21500508f9",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"stock\": 200,\n    \"reason\": \"Manual Admin Restock\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/products/TEST-999/stock",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "TEST-999",
+                "stock"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "id": "3cf58c29-4c62-43a6-b8b0-5c23c117022f",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/admin/products/TEST-999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "TEST-999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bulk Import",
+          "id": "2c7ead25-c10e-4646-9b2f-33a6d80a1c67",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n    {\n        \"Product_ID\": \"BULK-001\",\n        \"Name\": \"Bulk Item 1\",\n        \"Price\": 100,\n        \"Category\": \"Skincare\",\n        \"Stock_Quantity\": 50\n    },\n    {\n        \"Product_ID\": \"BULK-002\",\n        \"Name\": \"Bulk Item 2\",\n        \"Price\": 200,\n        \"Category\": \"Mask\",\n        \"Stock_Quantity\": 30\n    }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/products/bulk-import",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                "bulk-import"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "74be315b-5a54-4822-8c64-192e4e9b9677"
+    },
+    {
+      "name": "3. Inventory & Logs",
+      "item": [
+        {
+          "name": "Get Low Stock Alerts",
+          "id": "56c69ccb-bd97-4a4d-aff9-d7d08b22509c",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/inventory/alerts?threshold=50",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "inventory",
+                "alerts"
+              ],
+              "query": [
+                {
+                  "key": "threshold",
+                  "value": "50"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Stock History Logs",
+          "id": "8e1339d8-7c00-4911-8f03-a6fa4e803d36",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/inventory/logs?limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "inventory",
+                "logs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Adjust Stock (Inventory Route)",
+          "id": "6afb6501-614e-4dc4-908a-0fdd62cb52a2",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"productId\": \"BULK-001\",\n    \"newStock\": 88,\n    \"reason\": \"Inventory Audit Correction\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/inventory/adjust",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "inventory",
+                "adjust"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "2e19732f-ce8b-405c-adee-09a9efe74a91"
+    },
+    {
+      "name": "4. Admin Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "id": "922416e9-bbdf-4c57-8e02-d9ae609b3880",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/admin/dashboard/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "dashboard",
+                "stats"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Revenue Chart",
+          "id": "59b2f68c-029f-47a4-acce-9a5c752edb97",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/admin/dashboard/revenue",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "dashboard",
+                "revenue"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Top Products",
+          "id": "bf15211c-4ce5-4919-ad79-432e2f547f32",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/admin/dashboard/top-products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "dashboard",
+                "top-products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Orders",
+          "id": "9b674cac-207a-46bb-a4c6-8aa0c38c9fd3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/admin/orders?page=1&limit=5",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b9f70e56-95a2-406d-81f2-2f81c0087e11"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGM5YmQxNGFhMDc1Y2NjZGFhN2RhMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc3MjQ1NTg5NSwiZXhwIjoxNzczMDYwNjk1fQ.-x2SuV7VkmtUt8h5icweK4wiZVyb2nWxBoGfR-HCu6E",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "id": "a0fb4cd2-69c4-42bd-a552-e12797379c30",
+      "key": "base_url",
+      "value": "http://localhost:5001/api/v1"
+    },
+    {
+      "id": "2ac22f53-f3d0-475c-ba2b-dff8187739b0",
+      "key": "token",
+      "value": ""
+    }
+  ]
+}

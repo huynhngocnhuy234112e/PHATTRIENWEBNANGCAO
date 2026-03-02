@@ -34,11 +34,11 @@
     </tr>
     <tr>
       <td>Middle Name</td>
-      <td><input type="text" [(ngModel)]="middleName"></td>
+      <td><input type="text" [value]="middleName" (input)="middleName = $any($event.target).value"></td>
     </tr>
     <tr>
       <td>Last Name</td>
-      <td><input type="text" [(ngModel)]="lastName"></td>
+      <td><input type="text" [value]="lastName" (input)="lastName = $any($event.target).value"></td>
     </tr>
     <tr>
       <td colspan="2">

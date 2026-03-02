@@ -12,6 +12,14 @@ import { Ptb1 } from './ptb1/ptb1';
 import { Gpa } from './gpa/gpa';
 import { Ptb2 } from './ptb2/ptb2';
 import { Ex10 } from './ex10/ex10';
+import { Ex19 } from './ex19/ex19';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { DongABankComponent } from './ex25/dongabank.component';
+import { FakeProductComponent } from './fake-product-component/fake-product-component';
+import { TemplateFormComponent } from './template-form/template-form.component';
+import { BooksComponent } from './books/books';
+  import { BookDetailComponent } from './book-detail/book-detail';
 
 @NgModule({
   declarations: [
@@ -23,12 +31,20 @@ import { Ex10 } from './ex10/ex10';
     Ptb1,
     Gpa,
     Ptb2,
-    Ex10
+    Ex10,
+    Ex19,
+    DongABankComponent,
+    FakeProductComponent,
+    TemplateFormComponent,
+    BooksComponent,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

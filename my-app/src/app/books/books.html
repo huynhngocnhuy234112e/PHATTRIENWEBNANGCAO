@@ -1,0 +1,19 @@
+{{errMessage}}
+<table border="1">
+    <tr>
+        <td>BookId</td>
+        <td>BookName</td>
+        <td>Price</td>
+        <td>Image</td>
+    </tr>
+<tbody>
+    <tr *ngFor="let book of books">
+        <td>{{book.BookId}}</td>
+        <td>{{book.BookName}}</td>
+        <td>{{book.Price}} </td>
+        <td>
+            <img src="http://localhost:3000/static/{{book.Image}}" alt="{{book.BookName}}" width="100" height="100">
+        </td>
+    </tr>
+</tbody>
+</table>

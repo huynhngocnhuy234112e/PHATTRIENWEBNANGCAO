@@ -4,19 +4,19 @@
   
   <div class="date-selector">
     <div class="input-group">
-      <input type="number" [(ngModel)]="selectedDay" class="form-input" min="1" max="31">
+      <input type="number" [value]="selectedDay" (input)="selectedDay = $any($event.target).value" class="form-input" min="1" max="31">
       <label>Ngày</label>
     </div>
     
     <div class="input-group">
-      <select [(ngModel)]="selectedMonth" class="form-select">
+      <select [value]="selectedMonth" (change)="selectedMonth = $any($event.target).value" class="form-select">
         <option *ngFor="let month of months" [value]="month">{{month}}</option>
       </select>
       <label>Tháng</label>
     </div>
     
     <div class="input-group">
-      <select [(ngModel)]="selectedYear" class="form-select">
+      <select [value]="selectedYear" (change)="selectedYear = $any($event.target).value" class="form-select">
         <option *ngFor="let year of years" [value]="year">{{year}}</option>
       </select>
       <label>Năm</label>
