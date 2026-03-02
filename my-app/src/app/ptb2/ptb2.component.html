@@ -1,0 +1,30 @@
+<p>ptb2 works!</p>
+<table>
+    <tr>
+        <td>A</td>
+        <td>
+            <input type="number" [(ngModel)]="a_number">
+        </td>
+    </tr>
+    <tr>
+        <td>B</td>
+        <td>
+            <input type="number" [(ngModel)]="b_number">
+        </td>
+    </tr>
+    <tr>
+        <td>C</td>
+        <td>
+            <input type="number" [(ngModel)]="c_number">
+        </td>
+    </tr>
+    <tr>
+        <td>Result:</td>
+        <td>{{result}}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <button (click)="get_solution()">Get Solution</button>
+        </td>
+    </tr>
+</table>

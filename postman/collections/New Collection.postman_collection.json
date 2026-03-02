@@ -1,0 +1,21 @@
+{
+  "info": {
+    "_postman_id": "b0025f4d-5d35-45ea-803a-f3377f77a898",
+    "name": "Fashion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "id": "357a5f68-6333-4a22-bba1-8c983d2e47d5",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}

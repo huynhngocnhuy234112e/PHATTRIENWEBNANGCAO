@@ -1,4 +1,4 @@
-export interface IFakeProductRating {
-    rate: number;
-    count: number;
+export interface IFakeProductRating{
+    rate:number,
+    count:number
 }

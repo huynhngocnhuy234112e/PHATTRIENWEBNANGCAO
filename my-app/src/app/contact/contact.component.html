@@ -1,0 +1,44 @@
+<p>contact works!</p>
+<table border="1">
+    <tr>
+        <td>Name:</td>
+        <td>{{contact_name}}</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>{{contact_email}}</td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>{{contact_phone}}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="button" value="Send" (click)="sendContact('Thanh Thản')">
+        </td>
+    </tr>    
+</table>
+<div>
+    <p *ngFor="let p of products">{{p}}</p>
+</div>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products2">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+        </tr>
+    </tbody>
+</table>
+<p>Hệ số a: <input type="number" #hsa></p>
+<p>Hệ số b: <input type="number" #hsb></p>
+<p>Kết quả:</p>
+<p #ketqua></p>
+<button (click)="xulycong(hsa.value,hsb.value,ketqua)">Cộng</button>

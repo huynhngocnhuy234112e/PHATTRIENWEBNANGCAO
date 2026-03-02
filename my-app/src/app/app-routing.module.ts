@@ -1,0 +1,32 @@
+import { Routes } from '@angular/router';
+import { AboutComponent } from './about/about.component';
+import { Listproduct1Component } from './listproduct1/listproduct1.component';
+import { Listproduct2Component } from './listproduct2/listproduct2.component';
+import { Listproduct3Component } from './listproduct3/listproduct3.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ListcustomerComponent } from './listcustomer/listcustomer.component';
+import { CustomerdetailComponent } from './customerdetail/customerdetail.component';
+import { ListcustomerservicerComponent } from './listcustomerservicer/listcustomerservicer.component';
+import { FakeProductComponent } from './fake-product/fake-product.component';
+import { BooksComponent } from './books/books.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { BookNewComponent } from './book-new/book-new.component';
+import { FashionComponent } from './fashion/fashion.component';
+
+export const routes: Routes = [
+  { path: 'gioi-thieu', component: AboutComponent },
+  { path: 'sanpham1', component: Listproduct1Component },
+  { path: 'sanpham2', component: Listproduct2Component },
+  { path: 'sanpham3', component: Listproduct3Component },
+  { path: 'list-customer', component: ListcustomerComponent },
+  { path: 'list-customer/:id', component: CustomerdetailComponent },
+  { path: 'list-customer-service', component: ListcustomerservicerComponent },
+  { path: 'list-customer-service/:id', component: CustomerdetailComponent },
+  { path: 'ex26', component: FakeProductComponent },
+  { path: 'ex39', component: BooksComponent },
+  { path: 'ex41', component: BookDetailComponent },
+  { path: 'ex41/:id', component: BookDetailComponent },
+  { path: 'ex43', component: BookNewComponent },
+  { path: 'ex53', component: FashionComponent },
+  { path: '**', component: PagenotfoundComponent },
+];
