@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FashionAPIService } from '../fashion-api.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-fashion',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     templateUrl: './fashion.component.html',
     styleUrls: ['./fashion.component.css']
 })

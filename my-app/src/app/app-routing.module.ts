@@ -12,8 +12,12 @@ import { BooksComponent } from './books/books.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookNewComponent } from './book-new/book-new.component';
 import { FashionComponent } from './fashion/fashion.component';
+import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
+import { FashionNewComponent } from './fashion-new/fashion-new.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'gioi-thieu', component: AboutComponent },
   { path: 'sanpham1', component: Listproduct1Component },
   { path: 'sanpham2', component: Listproduct2Component },
@@ -28,5 +32,7 @@ export const routes: Routes = [
   { path: 'ex41/:id', component: BookDetailComponent },
   { path: 'ex43', component: BookNewComponent },
   { path: 'ex53', component: FashionComponent },
+  { path: 'ex54/:id', component: FashionDetailComponent },
+  { path: 'ex55', component: FashionNewComponent },
   { path: '**', component: PagenotfoundComponent },
 ];

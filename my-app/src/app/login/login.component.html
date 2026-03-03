@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+    <div class="login-card">
+        <h2>Đăng Nhập</h2>
+        <p>Chào mừng! Vui lòng đăng nhập để tiếp tục.</p>
+        <hr />
+
+        <div class="form-group">
+            <label for="username">Tên đăng nhập:</label>
+            <input id="username" type="text" class="form-input" [(ngModel)]="username"
+                placeholder="Nhập tên đăng nhập..." />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input id="password" type="password" class="form-input" [(ngModel)]="password"
+                placeholder="Nhập mật khẩu..." (keyup.enter)="onLogin()" />
+        </div>
+
+        <div class="error-msg" *ngIf="loginFailed">
+            Sai tên đăng nhập hoặc mật khẩu!
+        </div>
+
+        <button class="login-btn" (click)="onLogin()" [disabled]="isLoading">
+            <span *ngIf="!isLoading">Đăng Nhập</span>
+            <span *ngIf="isLoading">Đang kiểm tra...</span>
+        </button>
+    </div>
+</div>
