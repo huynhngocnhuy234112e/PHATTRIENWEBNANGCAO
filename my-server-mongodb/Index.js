@@ -13,6 +13,10 @@ const cors = require("cors");
 app.use(cors())
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
+
+// --- SESSION (Exercise 62) ---
+var session = require('express-session');
+app.use(session({secret: "Shh, its a secret!"}));
 app.listen(port, () => {
     console.log(`My Server listening on port ${port}`)
 })
@@ -108,4 +112,17 @@ app.get("/read-cookie", cors(), (req, res) => {
 app.get("/clear-cookie", cors(), (req, res) => {
     res.clearCookie("account")
     res.send("[account] Cookie is removed")
+})
+
+// --- SESSION APIs (Exercise 62) ---
+
+// Demo đếm số lần visit bằng Session
+app.get("/contact", cors(), (req, res) => {
+    if (req.session.visited != null) {
+        req.session.visited++
+        res.send("You visited this page " + req.session.visited + " times")
+    } else {
+        req.session.visited = 1
+        res.send("Welcome to this page for the first time!")
+    }
 })
