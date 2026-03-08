@@ -1,0 +1,50 @@
+<div class="form-container">
+    <div class="form-header">
+        <h2>{{ isEdit ? '✏️ Sửa Fashion' : '➕ Thêm mới Fashion' }}</h2>
+    </div>
+
+    <div class="error" *ngIf="errMessage">{{ errMessage }}</div>
+
+    <form class="fashion-form" (ngSubmit)="save()">
+        <div class="form-group">
+            <label>Tiêu đề *</label>
+            <input type="text" [(ngModel)]="fashion.fashion_title" name="fashion_title" required
+                placeholder="Nhập tiêu đề...">
+        </div>
+
+        <div class="form-group">
+            <label>Style *</label>
+            <select [(ngModel)]="fashion.style" name="style" required>
+                <option value="">-- Chọn Style --</option>
+                <option value="Street Style">Street Style</option>
+                <option value="Trends">Trends</option>
+                <option value="Classic">Classic</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Thumbnail (chọn file)</label>
+            <input type="file" accept="image/*" (change)="onFileSelected($event)">
+            <div *ngIf="fashion.thumbnail" class="preview">
+                <img [src]="fashion.thumbnail" alt="preview">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Nội dung (WYSIWYG)</label>
+            <quill-editor [(ngModel)]="fashion.fashion_detail" name="fashion_detail" [modules]="quillModules"
+                placeholder="Nhập nội dung bài viết..." style="display:block; height: 300px;">
+            </quill-editor>
+        </div>
+
+        <div class="form-group">
+            <label>Ngày tạo</label>
+            <input type="date" [(ngModel)]="fashion.creation_date" name="creation_date">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-save">💾 Lưu</button>
+            <button type="button" class="btn-cancel" (click)="cancel()">❌ Hủy</button>
+        </div>
+    </form>
+</div>

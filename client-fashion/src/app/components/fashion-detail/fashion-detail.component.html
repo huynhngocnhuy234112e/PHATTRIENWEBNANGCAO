@@ -1,0 +1,17 @@
+<div class="detail-wrapper" *ngIf="fashion">
+    <div class="detail-header">
+        <span class="style-tag">{{ fashion.style }}</span>
+        <h1 class="detail-title">{{ fashion.fashion_title }}</h1>
+        <p class="detail-date">{{ fashion.creation_date | date: 'MMMM d, y' }}</p>
+        <a routerLink="/" class="back-btn">← Back to Home</a>
+    </div>
+
+    <div class="detail-thumbnail">
+        <img [src]="fashion.thumbnail" [alt]="fashion.fashion_title">
+    </div>
+
+    <div class="detail-content" [innerHTML]="fashion.fashion_detail"></div>
+</div>
+
+<div class="loading" *ngIf="!fashion && !errMessage">Loading...</div>
+<div class="error" *ngIf="errMessage">{{ errMessage }}</div>

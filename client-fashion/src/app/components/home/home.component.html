@@ -1,0 +1,37 @@
+<div class="client-wrapper">
+    <!-- SEARCH BAR -->
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchStyle" placeholder='Try "Street Style"' (keyup.enter)="search()">
+        <button (click)="search()">SEARCH</button>
+    </div>
+
+    <!-- STYLE FILTER DROPDOWN PILLS -->
+    <div class="style-pills" *ngIf="styles.length > 0">
+        <span class="pill-label">Filter by:</span>
+        <button *ngFor="let s of styles" class="pill" (click)="filterByStyle(s)">
+            {{ s }}
+        </button>
+        <button class="pill clear" (click)="clearSearch()">All</button>
+    </div>
+
+    <div class="error" *ngIf="errMessage">{{ errMessage }}</div>
+
+    <!-- GROUPED FASHIONS -->
+    <div *ngFor="let group of groupedFashions" class="style-group">
+        <h2 class="style-heading">{{ group.style }}</h2>
+
+        <div class="fashion-grid">
+            <a *ngFor="let f of group.items" [routerLink]="['/detail', f._id]" class="fashion-card">
+                <div class="card-img-wrapper">
+                    <img [src]="f.thumbnail" [alt]="f.fashion_title" class="card-img">
+                    <div class="card-overlay">
+                        <span class="overlay-icon">🖼️</span>
+                    </div>
+                </div>
+                <p class="card-title">{{ f.fashion_title }}</p>
+            </a>
+        </div>
+    </div>
+
+    <p *ngIf="groupedFashions.length === 0 && !errMessage" class="empty">Không tìm thấy Fashion nào.</p>
+</div>
