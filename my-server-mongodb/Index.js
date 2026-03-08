@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 // --- SESSION (Exercise 62) ---
 var session = require('express-session');
-app.use(session({secret: "Shh, its a secret!"}));
+app.use(session({ secret: "Shh, its a secret!" }));
 app.listen(port, () => {
     console.log(`My Server listening on port ${port}`)
 })
@@ -29,6 +29,7 @@ client.connect();
 database = client.db("FashionData");
 fashionCollection = database.collection("Fashion");
 userCollection = database.collection("USER");
+productCollection = database.collection("Product");
 const bcrypt = require('bcrypt');
 
 // --- LOGIN + COOKIE (Exercise 61) ---
@@ -125,4 +126,69 @@ app.get("/contact", cors(), (req, res) => {
         req.session.visited = 1
         res.send("Welcome to this page for the first time!")
     }
+})
+
+// ============================================
+// --- PRODUCT + CART APIs (Exercise 63) ---
+// ============================================
+
+// Lấy toàn bộ sản phẩm
+app.get("/products", cors(), async (req, res) => {
+    try {
+        const result = await productCollection.find({}).toArray();
+        res.send(result);
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+})
+
+// Lấy 1 sản phẩm theo ID
+app.get("/products/:id", cors(), async (req, res) => {
+    try {
+        const result = await productCollection.findOne({ _id: new ObjectId(req.params.id) });
+        if (!result) return res.status(404).send({ error: "Product not found" });
+        res.send(result);
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+})
+
+// Thêm sản phẩm vào giỏ hàng (lưu vào Session)
+app.post("/cart/add", cors(), (req, res) => {
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
+    const product = req.body;
+    const existingIndex = req.session.cart.findIndex(item => item._id === product._id);
+    if (existingIndex >= 0) {
+        req.session.cart[existingIndex].qty += 1;
+    } else {
+        product.qty = 1;
+        req.session.cart.push(product);
+    }
+    res.send({ message: "Added to cart!", cart: req.session.cart });
+})
+
+// Xem giỏ hàng
+app.get("/cart", cors(), (req, res) => {
+    res.send(req.session.cart || []);
+})
+
+// Cập nhật số lượng sản phẩm trong giỏ
+app.put("/cart/update", cors(), (req, res) => {
+    const updatedItems = req.body;
+    if (!req.session.cart) return res.send([]);
+    updatedItems.forEach(item => {
+        const index = req.session.cart.findIndex(c => c._id === item._id);
+        if (index >= 0) req.session.cart[index].qty = item.qty;
+    });
+    req.session.cart = req.session.cart.filter(item => item.qty > 0);
+    res.send(req.session.cart);
+})
+
+// Xóa sản phẩm khỏi giỏ hàng
+app.delete("/cart/remove/:id", cors(), (req, res) => {
+    if (!req.session.cart) return res.send([]);
+    req.session.cart = req.session.cart.filter(item => item._id !== req.params.id);
+    res.send(req.session.cart);
 })

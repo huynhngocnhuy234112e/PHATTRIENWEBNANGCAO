@@ -15,6 +15,8 @@ import { FashionComponent } from './fashion/fashion.component';
 import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
 import { FashionNewComponent } from './fashion-new/fashion-new.component';
 import { LoginComponent } from './login/login.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,5 +36,7 @@ export const routes: Routes = [
   { path: 'ex53', component: FashionComponent },
   { path: 'ex54/:id', component: FashionDetailComponent },
   { path: 'ex55', component: FashionNewComponent },
+  { path: 'ex63', component: ProductListComponent },
+  { path: 'ex63-cart', component: CartComponent },
   { path: '**', component: PagenotfoundComponent },
 ];

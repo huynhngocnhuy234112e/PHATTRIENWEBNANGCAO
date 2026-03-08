@@ -1,0 +1,53 @@
+<div class="cart-container">
+  <h2>Shopping cart</h2>
+
+  <div *ngIf="updateMessage" class="success-msg">{{ updateMessage }}</div>
+  <div *ngIf="errMessage" class="error-msg">{{ errMessage }}</div>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Giỏ hàng trống. <a routerLink="/ex63">Tiếp tục mua sắm</a></p>
+  </div>
+
+  <table *ngIf="cartItems.length > 0" class="cart-table">
+    <thead>
+      <tr>
+        <th>Remove</th>
+        <th>SKU</th>
+        <th>Image</th>
+        <th>Product(s)</th>
+        <th>Price</th>
+        <th>Qty.</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>
+          <input type="checkbox"
+                 [checked]="isSelected(item._id.toString())"
+                 (change)="toggleSelected(item._id.toString())" />
+        </td>
+        <td class="sku">{{ item._id.toString().slice(-6).toUpperCase() }}</td>
+        <td><img [src]="item.image" [alt]="item.name" class="cart-img" /></td>
+        <td class="item-name"><strong>{{ item.name }}</strong></td>
+        <td>${{ item.price.toFixed(2) }}</td>
+        <td>
+          <input type="number" [(ngModel)]="item.qty" min="1" class="qty-input" />
+        </td>
+        <td>${{ itemTotal(item).toFixed(2) }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="6" class="grand-total-label"><strong>Grand Total:</strong></td>
+        <td class="grand-total-value"><strong>${{ grandTotal().toFixed(2) }}</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div *ngIf="cartItems.length > 0" class="cart-actions">
+    <button class="btn-remove" (click)="removeSelected()">Remove selected</button>
+    <button class="btn-update" (click)="updateCart()">Update shopping cart</button>
+    <button class="btn-continue" (click)="continueShopping()">Continue shopping</button>
+  </div>
+</div>

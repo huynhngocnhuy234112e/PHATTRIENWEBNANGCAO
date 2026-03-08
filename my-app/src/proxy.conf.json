@@ -10,10 +10,11 @@
     },
     {
         "context": [
-            "/products"
+            "/products",
+            "/cart"
         ],
-        "target": "https://fakestoreapi.com",
-        "secure": true,
+        "target": "http://localhost:3002",
+        "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
     },

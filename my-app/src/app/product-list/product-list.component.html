@@ -1,0 +1,26 @@
+<div class="shop-container">
+  <h2>🛍️ Sản phẩm</h2>
+
+  <div *ngIf="addedMessage" class="success-msg">{{ addedMessage }}</div>
+  <div *ngIf="errMessage" class="error-msg">{{ errMessage }}</div>
+
+  <div class="cart-link">
+    <a routerLink="/ex63-cart">🛒 Xem giỏ hàng</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-img-wrap">
+        <img [src]="product.image" [alt]="product.name" class="product-img" />
+      </div>
+      <div class="product-info">
+        <p class="product-name">{{ product.name }}</p>
+        <div class="product-stars">☆ ☆ ☆ ☆ ☆</div>
+        <p class="product-price">${{ product.price.toFixed(2) }}</p>
+        <div class="product-actions">
+          <button class="btn-add" (click)="addToCart(product)">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
